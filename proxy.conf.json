@@ -1,0 +1,8 @@
+{
+    "/oauth/*": {
+        "target": "https://github-api-oauth-server.onrender.com/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

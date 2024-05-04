@@ -1,0 +1,9 @@
+{
+    "/oauth/*": {
+        "target": "https://github-api-oauth-server.onrender.com/",
+        "targetlocal":"http://localhost:8080/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

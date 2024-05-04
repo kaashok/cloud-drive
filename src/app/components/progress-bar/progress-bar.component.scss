@@ -1,0 +1,13 @@
+.arasans-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.spinner-border {
+    --bs-spinner-width: 10rem !important;
+    --bs-spinner-height: 10rem !important;
+    --bs-spinner-border-width: 1.25em !important;
+}

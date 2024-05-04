@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-body">
+    <a class="navbar-brand" href="#">Arasans Cloud Drive</a>
+
+    <ul class="navbar-nav ml-auto nav-menu-item">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <label>Private Repository:</label>
+            <select class="form-select" aria-label="Default select example">
+                <option [value]="repo.id" *ngFor="let repo of repoDetails">{{repo.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 file-row" *ngFor="let fileOrFolder of fileAndFolderList">
+            <div class="card">
+                <div class="card-header file-name">
+                    {{fileOrFolder.name}}
+                </div>
+                <ng-container *ngIf="fileOrFolder.type==='file' then fileTemplate ; else folderTemplate"></ng-container>
+                <ng-template #fileTemplate>
+                    <ng-container *ngTemplateOutlet="fileCardBody ; context: {$implicit:fileOrFolder}"></ng-container>
+                </ng-template>
+                <ng-template #folderTemplate>
+                    <ng-container *ngTemplateOutlet="folderCardBody ; context: {$implicit:fileOrFolder}"></ng-container>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #fileCardBody let-file>
+    <div class="card-body content-card-body">
+        <div *ngIf="file.fileType === 'JPEG Image'">
+            <img class="file-img" [src]="file.base64Content" alt="Image Preview">
+        </div>
+        <div *ngIf="file.fileType=== 'video/mp4'">
+            <video controls>
+                <source [src]="file.base64Content" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div *ngIf="file.fileType === 'PDF'">
+            Unknown file type. Cannot preview.
+        </div>
+        <div *ngIf="file.fileType === 'Unknown'">
+            Unknown file type. Cannot preview.
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #folderCardBody let-folder>
+    <div class="card-body content-card-body">
+
+    </div>
+</ng-template>
